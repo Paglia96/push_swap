@@ -3,27 +3,27 @@
 int	is_ordered(t_list *lst)
 {
 	if (!lst->next)
-		return (1);
+		return (TRUE);
 	while(lst->next)
 	{
 		if (lst->nb > lst->next->nb)
-			return (0);
+			return (FALSE);
 		lst = lst->next;
 	}
-	return (1);
+	return (TRUE);
 }
 
 int	is_reverse_ordered(t_list *lst)
 {
 	if (!lst->next)
-		return (1);
+		return (TRUE);
 	while(lst->next)
 	{
 		if (lst->nb < lst->next->nb)
-			return (0);
+			return (FALSE);
 		lst = lst->next;
 	}
-	return (1);
+	return (TRUE);
 }
 
 void	tail_of_list(t_list **last)
@@ -37,10 +37,10 @@ int	is_greatest_number(int nb, t_list *lst)
 	while (lst)
 	{
 		if (lst->nb > nb)
-			return (0);
+			return (FALSE);
 		lst = lst->next;
 	}
-	return (1);
+	return (TRUE);
 }
 
 int lesser_number(t_list *lst)
@@ -71,6 +71,31 @@ int	greatest_number(t_list *lst)
 		lst = lst->next;
 	}
 	return max;
+}
+
+int	prev_greatest_number(t_list *lst)
+{
+	int	prev;
+	int	greatest;
+
+	prev = lst->nb;
+	if (ft_lstsize(lst) == 2)
+	{
+		if (lst->next->nb < prev)
+			return (lst->next->nb);
+	}
+	greatest = greatest_number(lst);
+	lst = lst->next;
+	while (lst)
+	{
+		if (lst->nb != greatest)
+		{
+			if (lst->nb > prev)
+				prev = lst->nb;
+		}
+		lst = lst->next;
+	}
+	return prev;
 }
 
 int	target_distance(int nb, t_list *lst)
@@ -121,7 +146,7 @@ int	ordered_but_need_rotation(t_list *lst)
 	return (1);
 }
 
-void	rotate_to_order(t_list **a)
+void	rotate_to_order(t_list **a, t_count *count)
 {
 	int distance;
 	int len;
@@ -131,11 +156,11 @@ void	rotate_to_order(t_list **a)
 	if (distance > (len / 2))
 	{
 		while(!is_ordered(*a))
-			reverse_rotate(a, 'a');
+			reverse_rotate(a, 'a', count);
 	}
 	else
 		while(!is_ordered(*a))
-			rotate(a, 'a');
+			rotate(a, 'a', count);
 }
 
 char	determine_rotate_direction(t_list *lst, t_list *start)
