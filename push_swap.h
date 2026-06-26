@@ -10,6 +10,7 @@
 
 #define TRUE 1
 #define FALSE 0
+#define ND -1
 
 // strategy selector
 
@@ -27,6 +28,7 @@ typedef struct s_flags
 typedef struct s_list
 {
 	int		nb;
+	int		idx;
 	struct s_list	*next;
 }	t_list;
 
@@ -53,7 +55,7 @@ void    count_initializer(t_count *count);
 
 //PARSING
 void	args_parser(char **argv, t_list **lst, t_flags *flag, int i);
-
+void    index_list(t_list *lst);
 
 //MOVES
 void	swap(t_list **lst, char c, t_count *count);
@@ -65,6 +67,8 @@ void	reverse_rotate(t_list **lst, char c, t_count *count);
 void	double_reverse_rotate(t_list **lst_a, t_list **lst_b, t_count *count);
 
 void    error_call();
+
+int	round_sqrt(int nb);
 
 int	ft_isdigit(int c);
 int	ft_isspace(int c);

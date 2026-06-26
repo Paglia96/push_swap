@@ -24,15 +24,6 @@ void	swap(t_list **lst, char c, t_count *count)
 	(*lst)->next = one;
 }
 
-void	double_swap(t_list **lst_a, t_list **lst_b, t_count *count)
-{
-	swap(lst_a, 's', count);
-	swap(lst_b, 's', count);
-	write(1, "ss\n", 3);
-	count->ss += 1;
-	count->total += 1;
-}
-
 void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 {
 	if (c == 'a')
@@ -96,15 +87,6 @@ void	rotate(t_list **lst, char c, t_count *count)
 	first->next = NULL;
 }
 
-void	double_rotate(t_list **lst_a, t_list **lst_b, t_count *count)
-{
-	rotate(lst_a, 'r', count);
-	rotate(lst_b, 'r', count);
-	write(1, "rr\n", 3);
-	count->rr += 1;
-	count->total += 1;
-}
-
 void	reverse_rotate(t_list **lst, char c, t_count *count)
 {
 	t_list	*last;
@@ -137,13 +119,4 @@ void	reverse_rotate(t_list **lst, char c, t_count *count)
 	prev->next = NULL;
 	last->next = first;
 	*lst = last;
-}
-
-void	double_reverse_rotate(t_list **lst_a, t_list **lst_b, t_count *count)
-{
-	reverse_rotate(lst_a, 'r', count);
-	reverse_rotate(lst_b, 'r', count);
-	write(1, "rrr\n", 4);
-	count->rrr += 1;
-	count->total += 1;
 }

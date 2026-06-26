@@ -8,6 +8,7 @@ t_list	*ft_lstnew(int nb)
 	if (!new_node)
 		return (NULL);
 	new_node->nb = nb;
+	new_node->idx = ND;
 	new_node->next = NULL;
 	return (new_node);
 }
