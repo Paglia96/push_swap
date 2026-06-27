@@ -77,6 +77,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // ALGORITHMS
 void	simple_min_max_extraction_method(t_list **a, t_list **b, t_count *count);
+void	chunk_sort(t_list **a, t_list **b, t_count *count);
+void	push_in_b(t_list **a, t_list **b, t_count *count);
+int	*fill_intset(int i, const int chunk);
+int	target_idx_distance(int nb, t_list *lst);
 
 void    tail_of_list(t_list **last);
 

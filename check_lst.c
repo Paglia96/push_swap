@@ -113,6 +113,21 @@ int	target_distance(int nb, t_list *lst)
 	return (i);
 }
 
+int	target_idx_distance(int nb, t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		if (lst->idx == nb)
+			return(i);
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
 int	ordered_but_need_rotation(t_list *lst)
 {
 	int	min;
