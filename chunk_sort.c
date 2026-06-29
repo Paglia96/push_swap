@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 14:19:20 by caguiari          #+#    #+#             */
-/*   Updated: 2026/06/29 14:26:26 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/06/29 14:33:52 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	chunk_sort(t_list **a, t_list **b, t_count *count)
 {
 	push_in_b(a, b, count);
-	//push_back_in_a();
+	push_back_in_a(a, b, count);
 }
 
 void	push_in_b(t_list **a, t_list **b, t_count *count)
@@ -56,7 +56,6 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 		i++;
 	}
 	//printf("%d\n", nearest_nb(intset, a, chunk));
-	push_back_in_a(a, b, count);
 	free(intset);
 }
 
