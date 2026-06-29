@@ -4,7 +4,7 @@ static int	lesser_nb_needing_index(t_list *lst)
 {
 	int	min;
 
-	min = 2147483647;
+	min = INT_MAX;
 	while(lst)
 	{
 		if (lst->idx == ND && lst->nb < min)

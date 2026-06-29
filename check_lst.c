@@ -113,20 +113,18 @@ int	target_distance(int nb, t_list *lst)
 	return (i);
 }
 
-int	target_idx_distance(int nb, t_list *lst)
+int	target_idx_distance(int target, t_list *lst)
 {
 	int	i;
 
 	i = 0;
 	while (lst)
 	{
-		if (lst->idx == nb)
+		if (lst->idx == target)
 			return (i);
 		lst = lst->next;
 		i++;
 	}
-	if (i == 0 && lst->idx == nb)
-		return (i);
 	return (-1);
 }
 

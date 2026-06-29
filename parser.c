@@ -17,7 +17,6 @@ void	args_parser(char **argv, t_list **lst, t_flags *flag, int i)
 	int	nb;
 
 	nb = 0;
-
 	while (argv[i])
 	{
 		y = 0;

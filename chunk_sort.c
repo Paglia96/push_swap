@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 14:19:20 by caguiari          #+#    #+#             */
-/*   Updated: 2026/06/29 14:33:52 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/06/29 16:18:54 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,7 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 	int	chunk;
 	int	*intset;
 	int	i;
-	//int	nearest;
-	//int j = 0;
-	
-	(void)a;
-	(void)b;
-	(void)count;
-	//nearest = 
+
 	i = 0;
 	size = ft_lstsize(*a);
 	chunk = round_sqrt(size);//qui decidiamo quanti chunk e da quanti numeri ciascuno
@@ -38,10 +32,7 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 	while (i < size)
 	{
 		if ( i % chunk == 0)
-		{
-			free(intset);
-			intset = fill_intset(i, chunk);
-		}
+			fill_intset(i, chunk, &intset);
 		if (nearest_nb(intset, a, chunk) <= ft_lstsize(*a) / 2)
 		{
 			while (nearest_nb(intset, a, chunk) != 0)
@@ -55,26 +46,25 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 		push (b, a, 'b', count);
 		i++;
 	}
-	//printf("%d\n", nearest_nb(intset, a, chunk));
 	free(intset);
 }
 
-int	*fill_intset(int i, const int chunk)
+int	*fill_intset(int i, const int chunk, int **intset)
 {
-	int	*ptr;
 	int	j;
 
+	free(*intset);
 	j = 0;
-	ptr = malloc (sizeof(int) * chunk);
-	if (!ptr)
+	*intset = malloc (sizeof(int) * chunk);
+	if (!(*intset))
 		return (NULL);
 	while (j < chunk)
 	{
-		ptr[j] = i;
+		(*intset)[j] = i;
 		i++;
 		j++;
 	}
-	return (ptr);
+	return (*intset);
 }
 
 int	nearest_nb(int *intset, t_list **a, int chunk)

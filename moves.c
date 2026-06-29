@@ -27,7 +27,6 @@ void	swap(t_list **lst, char c, t_count *count)
 void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 {
 	t_list *tmp_a;
-	t_list *tmp_b;
 
 	if (!lst_src || !*lst_src)
 		return ;
@@ -52,7 +51,6 @@ void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 		return ;
 	}
 	tmp_a->next = *lst_dest;
-	tmp_b = *lst_dest;
 	*lst_dest = tmp_a;
 }
 
@@ -69,7 +67,7 @@ void	rotate(t_list **lst, char c, t_count *count)
 		count->ra += 1;
 		count->total += 1;
 	}
-	else
+	else if (c == 'b')
 	{
 		write(1, "rb\n", 3);
 		count->rb += 1;
@@ -98,7 +96,7 @@ void	reverse_rotate(t_list **lst, char c, t_count *count)
 		count->rra += 1;
 		count->total += 1;
 	}
-	else
+	else if (c == 'b')
 	{
 		write(1, "rrb\n", 4);
 		count->rrb += 1;

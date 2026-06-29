@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 15:26:51 by gipaglie          #+#    #+#             */
-/*   Updated: 2026/06/29 14:17:01 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/06/29 17:14:20 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	push_prev_greatest_nb(
 	while ((*b)->nb != prev_greatest_number(*b))
 		rotation(b, 'b', count);
 	push(a, b, 'a', count);
-	return (1);
+	return (TRUE);
 }
 
 static int	find_target_in_b(
@@ -32,15 +32,13 @@ static int	find_target_in_b(
 {
 	int	greatest_distance;
 	int	prev_distance;
-	int	size;
 
 	greatest_distance = target_distance(greatest_number(*b), *b);
-	size = ft_lstsize(*b);
 	prev_distance = target_distance(prev_greatest_number(*b), *b);
-	if (greatest_distance >= (size / 2))
+	if (greatest_distance >= (ft_lstsize(*b) / 2))
 	{
 		if ((*b)->next && prev_distance < greatest_distance
-			&& prev_distance >= (size / 2))
+			&& prev_distance >= (ft_lstsize(*b) / 2))
 			prev_moved = push_prev_greatest_nb(a, b, count, reverse_rotate);
 		while (*b && (*b)->nb != greatest_number(*b))
 			reverse_rotate(b, 'b', count);
@@ -48,7 +46,7 @@ static int	find_target_in_b(
 	else
 	{
 		if ((*b)->next && prev_distance < greatest_distance
-			&& prev_distance < (size / 2))
+			&& prev_distance < (ft_lstsize(*b) / 2))
 			prev_moved = push_prev_greatest_nb(a, b, count, rotate);
 		while (*b && (*b)->nb != greatest_number(*b))
 			rotate(b, 'b', count);
@@ -62,7 +60,7 @@ void	push_back_in_a(t_list **a, t_list **b, t_count *count)
 
 	while (*b)
 	{
-		prev_moved = 0;
+		prev_moved = FALSE;
 		if ((*b)->next)
 			prev_moved = find_target_in_b(a, b, count, prev_moved);
 		push(a, b, 'a', count);
