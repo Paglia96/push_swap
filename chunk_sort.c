@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 14:19:20 by caguiari          #+#    #+#             */
-/*   Updated: 2026/06/27 17:47:07 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/06/29 14:26:26 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 	int	chunk;
 	int	*intset;
 	int	i;
-	int j = 0;
+	//int	nearest;
+	//int j = 0;
 	
 	(void)a;
 	(void)b;
 	(void)count;
+	//nearest = 
 	i = 0;
 	size = ft_lstsize(*a);
 	chunk = round_sqrt(size);//qui decidiamo quanti chunk e da quanti numeri ciascuno
@@ -40,9 +42,21 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 			free(intset);
 			intset = fill_intset(i, chunk);
 		}
-		
+		if (nearest_nb(intset, a, chunk) <= ft_lstsize(*a) / 2)
+		{
+			while (nearest_nb(intset, a, chunk) != 0)
+				rotate (a, 'a', count);
+		}
+		else
+		{
+			while (nearest_nb(intset, a, chunk) != 0)
+				reverse_rotate (a, 'a', count);
+		}
+		push (b, a, 'b', count);
 		i++;
 	}
+	//printf("%d\n", nearest_nb(intset, a, chunk));
+	push_back_in_a(a, b, count);
 	free(intset);
 }
 
@@ -71,12 +85,13 @@ int	nearest_nb(int *intset, t_list **a, int chunk)
 	int	tmp;
 
 	i = 0;
-	nearest = target_idx_distance(intset[i], *a);
+	nearest = INT_MAX;
 	while (i < chunk)
 	{
 		tmp = target_idx_distance(intset[i], *a);
-		if ( tmp < nearest)
+		if (tmp != -1 && tmp < nearest)
 			nearest = tmp;
 		i++;
 	}
+	return (nearest);
 }

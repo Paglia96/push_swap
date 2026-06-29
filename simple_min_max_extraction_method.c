@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
+/*                                                        :::      ::::::::   */
 /*   simple_min_max_extraction_method.c                 :+:      :+:    :+:   */
-/*                                                   +:+ +:+         +:+      */
-/*   By: gipaglie <marvin@42.fr>                   #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/06/26 15:26:51 by gipaglie         #+#    #+#              */
-/*   Updated: 2026/06/26 17:15:32 by gipaglie         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/26 15:26:51 by gipaglie          #+#    #+#             */
+/*   Updated: 2026/06/29 14:17:01 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	find_target_in_b(
 	return (prev_moved);
 }
 
-static void	push_back_in_a(t_list **a, t_list **b, t_count *count)
+void	push_back_in_a(t_list **a, t_list **b, t_count *count)
 {
 	int	prev_moved;
 

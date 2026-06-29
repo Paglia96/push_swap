@@ -81,6 +81,8 @@ void	chunk_sort(t_list **a, t_list **b, t_count *count);
 void	push_in_b(t_list **a, t_list **b, t_count *count);
 int	*fill_intset(int i, const int chunk);
 int	target_idx_distance(int nb, t_list *lst);
+int	nearest_nb(int *intset, t_list **a, int chunk);
+void	push_back_in_a(t_list **a, t_list **b, t_count *count);
 
 void    tail_of_list(t_list **last);
 
