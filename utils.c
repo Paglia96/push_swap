@@ -10,7 +10,7 @@ int	ft_isspace(int c)
 	return (c == ' ' || (c >= '\t' && c <= '\r'));
 }
 
-int	ft_atoi(const char *nptr, int *y)
+int	ft_atoi(const char *nptr, int *y, t_list *a)
 {
 	int	i;
 	int	minus;
@@ -34,7 +34,7 @@ int	ft_atoi(const char *nptr, int *y)
 	*y += i;
 	if (nb >= INT_MIN && nb <= INT_MAX)
 		return ((int) nb);
-	error_call();
+	error_call(a);
 	return (0);
 }
 

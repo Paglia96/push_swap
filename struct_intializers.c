@@ -31,7 +31,7 @@ static void	set_flag_move_index(int *flag, int *y, int offset)
 	*y += offset;
 }
 
-void	flags_parser(t_flags *flag, char *str, int *y)
+void	flags_parser(t_flags *flag, char *str, int *y, t_list *a)
 {
 	*y += 2;
 	if (str[2] == 'b' && !ft_strncmp(&str[2], "bench", 5))
@@ -45,5 +45,5 @@ void	flags_parser(t_flags *flag, char *str, int *y)
 	else if (str[2] == 'a' && !ft_strncmp(&str[2], "adaptive", 8))
 		set_flag_move_index(&flag->adaptive, y, 8);
 	else
-		error_call();
+		error_call(a);
 }

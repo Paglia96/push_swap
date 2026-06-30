@@ -25,17 +25,17 @@ void	args_parser(char **argv, t_list **lst, t_flags *flag, int i)
 			if (ft_isspace(argv[i][y]))
 				y++;
 			else if (argv[i][y] == '-' && argv[i][y + 1] == '-')
-				flags_parser(flag, &argv[i][y], &y);
+				flags_parser(flag, &argv[i][y], &y, *lst);
 			else if (ft_isdigit(argv[i][y]) || ((argv[i][y] == '-' || argv[i][y] == '+') && ft_isdigit(argv[i][y + 1])))
 			{
-				nb = ft_atoi(&argv[i][y], &y);
+				nb = ft_atoi(&argv[i][y], &y, *lst);
 				if (!duplicate_check(nb, *lst))
 					ft_lstpush(lst, ft_lstnew(nb));
 				else
-					error_call();
+					error_call(*lst);
 			}
 			else
-				error_call();
+				error_call(*lst);
 		}
 		i++;
 	}

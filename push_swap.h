@@ -50,7 +50,7 @@ typedef struct s_count
 
 //STRUCT INITIALIZERS
 void    flags_initializer(t_flags *flag);
-void    flags_parser(t_flags *flag, char *str, int *y);
+void    flags_parser(t_flags *flag, char *str, int *y, t_list *a);
 void    count_initializer(t_count *count);
 
 //PARSING
@@ -66,18 +66,19 @@ void	double_rotate(t_list **lst_a, t_list **lst_b, t_count *count);
 void	reverse_rotate(t_list **lst, char c, t_count *count);
 void	double_reverse_rotate(t_list **lst_a, t_list **lst_b, t_count *count);
 
-void    error_call();
+void	error_call(t_list *lst);
 
 int	round_sqrt(int nb);
 
 int	ft_isdigit(int c);
 int	ft_isspace(int c);
-int	ft_atoi(const char *nptr, int *y);
+int	ft_atoi(const char *nptr, int *y, t_list *a);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // ALGORITHMS
 void	simple_min_max_extraction_method(t_list **a, t_list **b, t_count *count);
 void	chunk_sort(t_list **a, t_list **b, t_count *count);
+float	disorder(t_list *lst);
 void	push_in_b(t_list **a, t_list **b, t_count *count);
 int	*fill_intset(int i, const int chunk, int **intset);
 int	target_idx_distance(int nb, t_list *lst);
