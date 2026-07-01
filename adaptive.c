@@ -6,13 +6,13 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 15:07:59 by caguiari          #+#    #+#             */
-/*   Updated: 2026/06/30 16:23:22 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/01 17:06:07 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-float	disorder(t_list *lst)
+void	disorder(t_list *lst, t_count *count)
 {
 	int	mistakes;
 	int	total_pairs;
@@ -32,5 +32,5 @@ float	disorder(t_list *lst)
 		}
 		lst = lst->next;
 	}
-	return ((float) mistakes / (float) total_pairs);
+	count->disorder = (float) mistakes / (float) total_pairs;
 }

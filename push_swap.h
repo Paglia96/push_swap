@@ -46,6 +46,7 @@ typedef struct s_count
 	int	rrb;
 	int	rrr;
 	int	total;
+	float	disorder;
 }	t_count;
 
 //STRUCT INITIALIZERS
@@ -78,7 +79,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n);
 // ALGORITHMS
 void	simple_min_max_extraction_method(t_list **a, t_list **b, t_count *count);
 void	chunk_sort(t_list **a, t_list **b, t_count *count);
-float	disorder(t_list *lst);
+void	disorder(t_list *lst, t_count *count);
 void	push_in_b(t_list **a, t_list **b, t_count *count);
 int	*fill_intset(int i, const int chunk, int **intset);
 int	target_idx_distance(int nb, t_list *lst);

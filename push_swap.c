@@ -4,7 +4,7 @@ void	error_call(t_list *lst)
 {
 	t_list	*ptr;
 
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	while (lst)
 	{
 		ptr = lst;
@@ -12,6 +12,91 @@ void	error_call(t_list *lst)
 		free(ptr);
 	}
 	exit(1);
+}
+
+static void	ft_putnbr_moves(int n)
+{
+	if (n < 10)
+	{
+		write (2, &"0123456789"[n % 10], 1);
+		return ;
+	}
+	ft_putnbr_moves(n / 10);
+	write (2, &"0123456789"[n % 10], 1);
+	return ;
+}
+
+static void	first_line(t_count *moves)
+{
+	float	var_1;
+	float	var_2;
+
+	write (2, "[bench] disorder:  ", 19);
+	if (moves->disorder == 0.1000)
+	{
+		write (2, "100.00%\n", 8);
+		return ;
+	}
+	var_1 = moves->disorder * 100;
+	var_2 = (var_1 * 100) - ((int)var_1 * 100);
+	ft_putnbr_moves((int) var_1);
+	write (2, ".", 1);
+	ft_putnbr_moves((int) var_2);
+	if ((int) var_2 == 0)
+		write (2, "0", 1);
+	write (2, "%\n", 2);
+}
+
+static void	second_line(t_count *moves)
+{
+	(void)moves;
+	write (2, "[bench] strategy:  ", 19);
+	//write (2, );
+}
+
+static void	third_and_fourth_lines(t_count *moves)
+{
+	write (2, "[bench] total_ops:  ", 20);
+	ft_putnbr_moves(moves->total);
+	write (2, "\n", 1);
+	write (2, "[bench] ", 8);
+	write (2, "sa:  ", 5);
+	ft_putnbr_moves(moves->sa);
+	write (2, "  sb:  ", 7);
+	ft_putnbr_moves(moves->sb);
+	write (2, "  ss:  ", 7);
+	ft_putnbr_moves(moves->ss);
+	write (2, "  pa:  ", 7);
+	ft_putnbr_moves(moves->pa);
+	write (2, "  pb:  ", 7);
+	ft_putnbr_moves(moves->pb);
+	write (2, "\n", 1);
+}
+
+static void	last_line(t_count *moves)
+{
+	write (2, "[bench] ", 8);
+	write (2, "ra:  ", 5);
+	ft_putnbr_moves(moves->ra);
+	write (2, "  rb:  ", 7);
+	ft_putnbr_moves(moves->rb);
+	write (2, "  rr:  ", 7);
+	ft_putnbr_moves(moves->rr);
+	write (2, "  rra:  ", 8);
+	ft_putnbr_moves(moves->rra);
+	write (2, "  rrb:  ", 8);
+	ft_putnbr_moves(moves->rrb);
+	write (2, "  rrr:  ", 8);
+	ft_putnbr_moves(moves->rrr);
+	write (2, "\n", 1);
+}
+
+static void	print_stats_on_stderr(t_count *moves)
+{
+	first_line(moves);
+	second_line(moves);
+	third_and_fourth_lines(moves);
+	last_line(moves);
 }
 
 int	main(int argc, char **argv)
@@ -40,9 +125,11 @@ int	main(int argc, char **argv)
 		chunk_sort(&lst_a, &lst_b, &count);
 	//else if (flag.complex_s == 1 && !flag.medium && !flag.simple && !flag.adaptive)
 		//radix_sort();
-	else if ((flag.adaptive == 1 || flag.adaptive == 0) && !flag.medium && flag.complex_s && !flag.simple)
-		printf("%f", disorder(lst_a));
+	else if ((flag.adaptive == 1 || flag.adaptive == 0) && !flag.medium && !flag.complex_s && !flag.simple)
+		disorder(lst_a, &count);
 	else
 		error_call(lst_a);
+	if (flag.bench == 1)
+		print_stats_on_stderr(&count);
 	//printf("pa: %d, pb: %d, sa: %d, sb: %d, ss: %d, ra: %d, rb: %d, rr: %d, rra: %d, rrb: %d, rrr: %d, total %d", count.pa, count.pb, count.sa, count.sb, count.ss, count.ra, count.rb, count.rr, count.rra, count.rrb, count.rrr, count.total);
 }
