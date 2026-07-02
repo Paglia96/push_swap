@@ -73,6 +73,21 @@ int	greatest_number(t_list *lst)
 	return max;
 }
 
+int	greatest_index(t_list *lst)
+{
+	int	max;
+	
+	max = lst->idx;
+	lst = lst->next;
+	while (lst)
+	{
+		if (lst->idx > max)
+			max = lst->idx;
+		lst = lst->next;
+	}
+	return max;
+}
+
 int	prev_greatest_number(t_list *lst)
 {
 	int	prev;
@@ -208,3 +223,4 @@ char	determine_rotate_direction(t_list *lst, t_list *start)
 		return ('l');
 	return ('r');
 }
+

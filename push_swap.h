@@ -27,8 +27,8 @@ typedef struct s_flags
 
 typedef struct s_list
 {
-	int		nb;
-	int		idx;
+	int	nb;
+	int	idx;//METTILO AD UNSIGNED INT
 	struct s_list	*next;
 }	t_list;
 
@@ -96,6 +96,7 @@ int target_distance(int nb, t_list *lst);
 void    rotate_to_order(t_list **a, t_count *count);
 char    determine_rotate_direction(t_list *lst, t_list *start);
 int prev_greatest_number(t_list *lst);
+int	greatest_index(t_list *lst);
 
 //LST_UTILS
 t_list  *ft_lstnew(int nb);
