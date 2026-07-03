@@ -123,8 +123,8 @@ int	main(int argc, char **argv)
 		simple_min_max_extraction_method(&lst_a, &lst_b, &count);
 	else if (flag.medium == 1 && !flag.complex_s && !flag.simple && !flag.adaptive)
 		chunk_sort(&lst_a, &lst_b, &count);
-	//else if (flag.complex_s == 1 && !flag.medium && !flag.simple && !flag.adaptive)
-		//radix_sort();
+	else if (flag.complex_s == 1 && !flag.medium && !flag.simple && !flag.adaptive)
+		radix_sort(&lst_a, &lst_b, &count);
 	else if ((flag.adaptive == 1 || flag.adaptive == 0) && !flag.medium && !flag.complex_s && !flag.simple)
 		disorder(lst_a, &count);
 	else
