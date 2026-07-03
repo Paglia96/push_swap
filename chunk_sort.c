@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 14:19:20 by caguiari          #+#    #+#             */
-/*   Updated: 2026/06/29 16:18:54 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:48:54 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	chunk_sort(t_list **a, t_list **b, t_count *count)
 {
+	if (!count->adaptive_called)
+		count->strategy = ft_strdup("Adaptive / O(n√n)");
 	push_in_b(a, b, count);
 	push_back_in_a(a, b, count);
 }

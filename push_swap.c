@@ -51,7 +51,9 @@ static void	second_line(t_count *moves)
 {
 	(void)moves;
 	write (2, "[bench] strategy:  ", 19);
-	//write (2, );
+	write (2, moves->strategy, ft_strlen(moves->strategy));
+	free(moves->strategy);
+	write (2, "\n", 1);
 }
 
 static void	third_and_fourth_lines(t_count *moves)
@@ -119,6 +121,7 @@ int	main(int argc, char **argv)
 			error_call(lst_a);
 	}
 	index_list(lst_a);
+	disorder(lst_a, &count);
 	if (flag.simple == 1 && !flag.complex_s && !flag.medium && !flag.adaptive)
 		simple_min_max_extraction_method(&lst_a, &lst_b, &count);
 	else if (flag.medium == 1 && !flag.complex_s && !flag.simple && !flag.adaptive)
@@ -126,10 +129,12 @@ int	main(int argc, char **argv)
 	else if (flag.complex_s == 1 && !flag.medium && !flag.simple && !flag.adaptive)
 		radix_sort(&lst_a, &lst_b, &count);
 	else if ((flag.adaptive == 1 || flag.adaptive == 0) && !flag.medium && !flag.complex_s && !flag.simple)
-		disorder(lst_a, &count);
+		choose_algorithm(&lst_a, &lst_b, &count);
 	else
 		error_call(lst_a);
 	if (flag.bench == 1)
 		print_stats_on_stderr(&count);
+	if (flag.bench == 0)
+		free(count.strategy);
 	//printf("pa: %d, pb: %d, sa: %d, sb: %d, ss: %d, ra: %d, rb: %d, rr: %d, rra: %d, rrb: %d, rrr: %d, total %d", count.pa, count.pb, count.sa, count.sb, count.ss, count.ra, count.rb, count.rr, count.rra, count.rrb, count.rrr, count.total);
 }

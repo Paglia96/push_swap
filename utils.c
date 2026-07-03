@@ -68,3 +68,33 @@ void	ft_putnbr(int n)
 		ft_putnbr(n / 10);
 	write(1, &"0123456789"[n % 10], 1);
 }
+
+char	*ft_strdup(char *str)
+{
+	size_t	i;
+	size_t	len;
+	char	*str_dup;
+
+	i = 0;
+	len = ft_strlen(str);
+	str_dup = malloc(len + 1);
+	if (str_dup == NULL)
+		return (NULL);
+	while (str[i] != '\0')
+	{
+		str_dup[i] = str[i];
+		i++;
+	}
+	str_dup[i] = '\0';
+	return (str_dup);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

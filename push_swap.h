@@ -47,6 +47,8 @@ typedef struct s_count
 	int	rrr;
 	int	total;
 	float	disorder;
+	char	*strategy;
+	int	adaptive_called;
 }	t_count;
 
 //STRUCT INITIALIZERS
@@ -75,6 +77,8 @@ int	ft_isdigit(int c);
 int	ft_isspace(int c);
 int	ft_atoi(const char *nptr, int *y, t_list *a);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(char *str);
+size_t	ft_strlen(const char *str);
 
 // ALGORITHMS
 void	simple_min_max_extraction_method(t_list **a, t_list **b, t_count *count);
@@ -86,6 +90,7 @@ int	*fill_intset(int i, const int chunk, int **intset);
 int	target_idx_distance(int nb, t_list *lst);
 int	nearest_nb(int *intset, t_list **a, int chunk);
 void	push_back_in_a(t_list **a, t_list **b, t_count *count);
+void	choose_algorithm(t_list **a, t_list **b, t_count *count);
 
 void    tail_of_list(t_list **last);
 

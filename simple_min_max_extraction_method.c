@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 15:26:51 by gipaglie          #+#    #+#             */
-/*   Updated: 2026/06/29 17:14:20 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:50:08 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	simple_min_max_extraction_method(t_list **a, t_list **b, t_count *count)
 {
 	int	lst_size;
 
+	if (!count->adaptive_called)
+		count->strategy = ft_strdup("Adaptive / O(n²)");
 	lst_size = ft_lstsize(*a);
 	if (lst_size == 2 && (*a)->nb > (*a)->next->nb)
 		swap(a, 'a', count);
