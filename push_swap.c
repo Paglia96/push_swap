@@ -4,13 +4,9 @@ void	error_call(t_list *lst)
 {
 	t_list	*ptr;
 
+	(void)ptr;
 	write(2, "Error\n", 6);
-	while (lst)
-	{
-		ptr = lst;
-		lst = lst->next;
-		free(ptr);
-	}
+	free_lst(lst);
 	exit(1);
 }
 
@@ -136,5 +132,4 @@ int	main(int argc, char **argv)
 		print_stats_on_stderr(&count);
 	if (flag.bench == 0)
 		free(count.strategy);
-	//printf("pa: %d, pb: %d, sa: %d, sb: %d, ss: %d, ra: %d, rb: %d, rr: %d, rra: %d, rrb: %d, rrr: %d, total %d", count.pa, count.pb, count.sa, count.sb, count.ss, count.ra, count.rb, count.rr, count.rra, count.rrb, count.rrr, count.total);
 }

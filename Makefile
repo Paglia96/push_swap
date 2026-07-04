@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address,leak -g
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = push_swap
 
 SRCS = push_swap.c utils.c parser.c index_lst.c moves.c double_moves.c lst_utils.c check_lst.c struct_intializers.c simple_min_max_extraction_method.c round_sqrt.c chunk_sort.c adaptive.c radix_sort.c
@@ -8,7 +8,7 @@ OBJS := $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) -fsanitize=address,leak $(OBJS) -o $(NAME)
 
 %o: %c
 	$(CC) $(CFLAGS) $< -c $@

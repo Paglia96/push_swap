@@ -71,3 +71,15 @@ void	ft_lstprint(t_list *lst_a, t_list *lst_b)
 	}
 	write(1, "_ _\na b\n", 8);
 }
+
+void	free_lst(t_list *list)
+{
+	t_list	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+}

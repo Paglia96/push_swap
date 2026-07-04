@@ -95,6 +95,7 @@ void	choose_algorithm(t_list **a, t_list **b, t_count *count);
 void    tail_of_list(t_list **last);
 
 int is_greatest_number(int nb, t_list *lst);
+//int	is_smallest_number(int nb, t_list *lst);
 int lesser_number(t_list *lst);
 int greatest_number(t_list *lst);
 int ordered_but_need_rotation(t_list *lst);
@@ -108,6 +109,7 @@ int	greatest_index(t_list *lst);
 t_list  *ft_lstnew(int nb);
 int	ft_lstsize(t_list *first_node);
 void	ft_lstpush(t_list **first_node, t_list *new);
+void	free_lst(t_list *list);
 
 int	is_ordered(t_list *lst);
 int	is_reverse_ordered(t_list *lst);
