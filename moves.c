@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/06 17:14:12 by caguiari          #+#    #+#             */
+/*   Updated: 2026/07/06 17:43:26 by caguiari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_list **lst, char c, t_count *count)
 {
-	t_list *one;
+	t_list	*one;
 
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
@@ -26,7 +38,7 @@ void	swap(t_list **lst, char c, t_count *count)
 
 void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 {
-	t_list *tmp_a;
+	t_list	*tmp_a;
 
 	if (!lst_src || !*lst_src)
 		return ;
@@ -34,14 +46,13 @@ void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 	{
 		write(1, "pa\n", 3);
 		count->pa += 1;
-		count->total += 1;
 	}
 	else
 	{
 		write(1, "pb\n", 3);
 		count->pb += 1;
-		count->total += 1;
 	}
+	count->total += 1;
 	tmp_a = *lst_src;
 	*lst_src = (*lst_src)->next;
 	if (!*lst_dest)
@@ -56,8 +67,8 @@ void	push(t_list **lst_dest, t_list **lst_src, char c, t_count *count)
 
 void	rotate(t_list **lst, char c, t_count *count)
 {
-	t_list *first;
-	t_list *tmp;
+	t_list	*first;
+	t_list	*tmp;
 
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
@@ -90,18 +101,11 @@ void	reverse_rotate(t_list **lst, char c, t_count *count)
 
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
-	if (c == 'a')
-	{
+	if (c == 'a' && ++count->rra)
 		write(1, "rra\n", 4);
-		count->rra += 1;
-		count->total += 1;
-	}
-	else if (c == 'b')
-	{
+	else if (c == 'b' && ++count->rrb)
 		write(1, "rrb\n", 4);
-		count->rrb += 1;
-		count->total += 1;
-	}
+	count->total += 1;
 	last = *lst;
 	first = *lst;
 	prev = NULL;

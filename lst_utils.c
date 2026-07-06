@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/06 17:14:06 by caguiari          #+#    #+#             */
+/*   Updated: 2026/07/06 17:42:51 by caguiari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*ft_lstnew(int nb)
@@ -53,21 +65,21 @@ void	ft_lstprint(t_list *lst_a, t_list *lst_b)
 		write(1, " ", 1);
 		ft_putnbr(lst_b->nb);
 		write(1, "\n", 1);
-		lst_a = lst_a->next;	
-		lst_b = lst_b->next;	
+		lst_a = lst_a->next;
+		lst_b = lst_b->next;
 	}
 	while (lst_a)
 	{
 		ft_putnbr(lst_a->nb);
 		write(1, "\n", 1);
-		lst_a = lst_a->next;	
+		lst_a = lst_a->next;
 	}
 	while (lst_b)
 	{
 		write(1, "  ", 2);
 		ft_putnbr(lst_b->nb);
 		write(1, "\n", 1);
-		lst_b = lst_b->next;	
+		lst_b = lst_b->next;
 	}
 	write(1, "_ _\na b\n", 8);
 }

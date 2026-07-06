@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 15:07:59 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/03 17:39:42 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:54:52 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	disorder(t_list *lst, t_count *count)
 {
-	int	mistakes;
-	int	total_pairs;
 	t_list	*j;
+	int		mistakes;
+	int		total_pairs;
 
 	mistakes = 0;
 	total_pairs = 0;
@@ -44,7 +44,7 @@ void	choose_algorithm(t_list **a, t_list **b, t_count *count)
 		count->strategy = ft_strdup("Adaptive / O(n²)");
 	}
 	else if (count->disorder >= 0.2 && count->disorder < 0.5)
-	{	
+	{
 		chunk_sort(a, b, count);
 		count->strategy = ft_strdup("Adaptive / O(n√n)");
 	}

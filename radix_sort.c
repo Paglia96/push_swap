@@ -6,12 +6,11 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 17:27:25 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 14:43:12 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:57:04 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	bit_len(int nb)
 {
@@ -32,7 +31,7 @@ void	push_in_b_radix(t_list **a, t_list **b, t_count *count, int i)
 {
 	int	size;
 	int	j;
-	
+
 	size = ft_lstsize(*a);
 	j = 0;
 	while (j < size)
@@ -55,16 +54,15 @@ void	radix_sort(t_list **a, t_list **b, t_count *count)
 {
 	int	i;
 	int	len;
-	
+
 	if (!count->adaptive_called)
 		count->strategy = ft_strdup("O(n log n)");
 	i = 0;
 	len = bit_len(greatest_index(*a));
 	while (i < len)
 	{
-		push_in_b_radix(a, b ,count, i);
+		push_in_b_radix(a, b, count, i);
 		push_back_in_a_radix(a, b, count);
 		i++;
 	}
 }
-

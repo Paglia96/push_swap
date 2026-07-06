@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/06 17:46:22 by caguiari          #+#    #+#             */
+/*   Updated: 2026/07/06 17:50:13 by caguiari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -7,13 +19,9 @@
 
 #include <stdio.h>
 
-
 #define TRUE 1
 #define FALSE 0
 #define ND -1
-
-// strategy selector
-
 
 // STRUCTS
 typedef struct s_flags
@@ -52,13 +60,13 @@ typedef struct s_count
 }	t_count;
 
 //STRUCT INITIALIZERS
-void    flags_initializer(t_flags *flag);
-void    flags_parser(t_flags *flag, char *str, int *y, t_list *a);
-void    count_initializer(t_count *count);
+void	flags_initializer(t_flags *flag);
+void	flags_parser(t_flags *flag, char *str, int *y, t_list *a);
+void	count_initializer(t_count *count);
 
 //PARSING
 void	args_parser(char **argv, t_list **lst, t_flags *flag, int i);
-void    index_list(t_list *lst);
+void	index_list(t_list *lst);
 
 //MOVES
 void	swap(t_list **lst, char c, t_count *count);
@@ -92,22 +100,20 @@ int	nearest_nb(int *intset, t_list **a, int chunk);
 void	push_back_in_a(t_list **a, t_list **b, t_count *count);
 void	choose_algorithm(t_list **a, t_list **b, t_count *count);
 int	parsing_size(t_list **a, t_list **b, int lst_size, t_count *count);
-
-void    tail_of_list(t_list **last);
-
-int is_greatest_number(int nb, t_list *lst);
+void	print_stats_on_stderr(t_count *moves);
+void	ft_putnbr_moves(int n);
+int	is_greatest_number(int nb, t_list *lst);
 int	is_smallest_number(int nb, t_list *lst);
-int lesser_number(t_list *lst);
-int greatest_number(t_list *lst);
-int ordered_but_need_rotation(t_list *lst);
-int target_distance(int nb, t_list *lst);
-void    rotate_to_order(t_list **a, t_count *count);
-char    determine_rotate_direction(t_list *lst, t_list *start);
-int prev_greatest_number(t_list *lst);
+int	lesser_number(t_list *lst);
+int	greatest_number(t_list *lst);
+int	target_distance(int nb, t_list *lst);
+void	rotate_to_order(t_list **a, t_count *count);
+int	prev_greatest_number(t_list *lst);
 int	greatest_index(t_list *lst);
+void	which_half(t_list **a, t_count *count, int *intset, int chunk);
 
 //LST_UTILS
-t_list  *ft_lstnew(int nb);
+t_list	*ft_lstnew(int nb);
 int	ft_lstsize(t_list *first_node);
 void	ft_lstpush(t_list **first_node, t_list *new);
 void	free_lst(t_list *list);

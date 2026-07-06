@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct_intializers.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/06 17:17:14 by caguiari          #+#    #+#             */
+/*   Updated: 2026/07/06 17:52:19 by caguiari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	flags_initializer(t_flags *flag)
@@ -12,16 +24,16 @@ void	flags_initializer(t_flags *flag)
 void	count_initializer(t_count *count)
 {
 	count->pa = 0;
- 	count->pb = 0;
- 	count->sa = 0;
- 	count->sb = 0;
- 	count->ss = 0;
- 	count->ra = 0;
- 	count->rb = 0;
- 	count->rr = 0;
+	count->pb = 0;
+	count->sa = 0;
+	count->sb = 0;
+	count->ss = 0;
+	count->ra = 0;
+	count->rb = 0;
+	count->rr = 0;
 	count->rra = 0;
 	count->rrb = 0;
- 	count->rrr = 0;
+	count->rrr = 0;
 	count->total = 0;
 	count->adaptive_called = 0;
 }

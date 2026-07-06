@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 18:19:48 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 15:23:17 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:05:57 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	push_lesser_in_b(t_list **a, t_list **b, int lst_size, t_count *coun
 {
 	int	nb;//numero piu' piccolo
 	int	distance;//distanza dal nodo 0 al numero piu' piccolo
-	
+
 	nb = lesser_number(*a);
 	distance = target_distance(nb, *a);
 	while ((*a)->nb != nb)//stiamo cercando il numero piu' piccolo

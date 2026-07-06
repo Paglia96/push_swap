@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 14:19:20 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 14:43:01 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 17:55:19 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void	chunk_sort(t_list **a, t_list **b, t_count *count)
 		count->strategy = ft_strdup("O(n√n)");
 	push_in_b(a, b, count);
 	push_back_in_a(a, b, count);
+}
+
+void	which_half(t_list **a, t_count *count, int *intset, int chunk)
+{
+	if (nearest_nb(intset, a, chunk) <= ft_lstsize(*a) / 2)
+	{
+		while (nearest_nb(intset, a, chunk) != 0)
+			rotate (a, 'a', count);
+	}
+	else
+	{
+		while (nearest_nb(intset, a, chunk) != 0)
+			reverse_rotate (a, 'a', count);
+	}
 }
 
 void	push_in_b(t_list **a, t_list **b, t_count *count)
@@ -33,18 +47,9 @@ void	push_in_b(t_list **a, t_list **b, t_count *count)
 	intset = NULL;
 	while (i < size)
 	{
-		if ( i % chunk == 0)
+		if (i % chunk == 0)
 			fill_intset(i, chunk, &intset);
-		if (nearest_nb(intset, a, chunk) <= ft_lstsize(*a) / 2)
-		{
-			while (nearest_nb(intset, a, chunk) != 0)
-				rotate (a, 'a', count);
-		}
-		else
-		{
-			while (nearest_nb(intset, a, chunk) != 0)
-				reverse_rotate (a, 'a', count);
-		}
+		which_half(a, count, intset, chunk);
 		push (b, a, 'b', count);
 		i++;
 	}
