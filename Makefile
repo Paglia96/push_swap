@@ -2,13 +2,13 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = push_swap
 
-SRCS = push_swap.c utils.c parser.c index_lst.c moves.c double_moves.c lst_utils.c check_lst.c struct_intializers.c simple_min_max_extraction_method.c round_sqrt.c chunk_sort.c adaptive.c radix_sort.c
+SRCS = push_swap.c utils.c parser.c index_lst.c moves.c double_moves.c lst_utils.c check_lst.c struct_intializers.c simple_min_max_extraction_method.c round_sqrt.c chunk_sort.c adaptive.c radix_sort.c parsing_size.c
 OBJS := $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -fsanitize=address,leak $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -fsanitize=address,leak -o $(NAME)
 
 %o: %c
 	$(CC) $(CFLAGS) $< -c $@

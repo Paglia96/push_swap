@@ -32,7 +32,7 @@ void	tail_of_list(t_list **last)
 		(*last) = (*last)->next;
 }
 
-/* int	is_smallest_number(int nb, t_list *lst)
+int	is_smallest_number(int nb, t_list *lst)
 {
 	while(lst)
 	{
@@ -42,7 +42,7 @@ void	tail_of_list(t_list **last)
 	}
 	return (TRUE);
 }
- */
+
 int	is_greatest_number(int nb, t_list *lst)
 {
 	while (lst)

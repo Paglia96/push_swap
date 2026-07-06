@@ -23,6 +23,7 @@ void	count_initializer(t_count *count)
 	count->rrb = 0;
  	count->rrr = 0;
 	count->total = 0;
+	count->adaptive_called = 0;
 }
 
 static void	set_flag_move_index(int *flag, int *y, int offset)

@@ -91,11 +91,12 @@ int	target_idx_distance(int nb, t_list *lst);
 int	nearest_nb(int *intset, t_list **a, int chunk);
 void	push_back_in_a(t_list **a, t_list **b, t_count *count);
 void	choose_algorithm(t_list **a, t_list **b, t_count *count);
+int	parsing_size(t_list **a, t_list **b, int lst_size, t_count *count);
 
 void    tail_of_list(t_list **last);
 
 int is_greatest_number(int nb, t_list *lst);
-//int	is_smallest_number(int nb, t_list *lst);
+int	is_smallest_number(int nb, t_list *lst);
 int lesser_number(t_list *lst);
 int greatest_number(t_list *lst);
 int ordered_but_need_rotation(t_list *lst);

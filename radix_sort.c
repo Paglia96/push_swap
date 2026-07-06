@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 17:27:25 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/03 17:51:17 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 14:43:12 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	radix_sort(t_list **a, t_list **b, t_count *count)
 	int	len;
 	
 	if (!count->adaptive_called)
-		count->strategy = ft_strdup("Adaptive / O(n log n)");
+		count->strategy = ft_strdup("O(n log n)");
 	i = 0;
 	len = bit_len(greatest_index(*a));
 	while (i < len)

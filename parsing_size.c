@@ -6,43 +6,74 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 18:19:48 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/04 18:45:56 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/06 15:23:17 by caguiari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	size_3(t_list **a, int lst_size, t_count *count)
+static void	size_3(t_list **a, t_count *count)
 {
-	if (lst_size == 3)
+	while (!is_ordered(*a))
 	{
-		while (!is_ordered(*a))
+		if ((*a)->nb > (*a)->next->nb)
 		{
-			if ((*a)->nb > (*a)->next->nb)
-			{
-				if (is_greatest_number((*a)->nb, *a))
-					rotate(a, 'a', count);
-				else
-					swap(a, 'a', count);
-			}
+			if (is_greatest_number((*a)->nb, *a))
+				rotate(a, 'a', count);
 			else
-				reverse_rotate(a, 'a', count);
+				swap(a, 'a', count);
 		}
+		else
+			reverse_rotate(a, 'a', count);
 	}
+}
+
+static void	push_lesser_in_b(t_list **a, t_list **b, int lst_size, t_count *count)
+{
+	int	nb;//numero piu' piccolo
+	int	distance;//distanza dal nodo 0 al numero piu' piccolo
+	
+	nb = lesser_number(*a);
+	distance = target_distance(nb, *a);
+	while ((*a)->nb != nb)//stiamo cercando il numero piu' piccolo
+	{
+		if (lst_size / 2 <= distance)//se e' nella seconda meta' della mediana
+			reverse_rotate(a, 'a', count);
+		else//se e' nella prima meta' della mediana
+			rotate(a, 'a', count);
+	}
+	push(b, a, 'b', count);
 }
 
 static void	size_4(t_list **a, t_list **b, int lst_size, t_count *count)
 {
-	if (is_smallest_number((*a)->nb,*a))
-		push(b, a, 'b', count);
+	push_lesser_in_b(a, b, lst_size, count);
+	size_3(a, count);
+	push(a, b, 'a', count);
 }
 
-void	parsing_size(t_list **a, t_list **b, int lst_size, t_count *count)
+static void	size_5(t_list **a, t_list **b, int lst_size, t_count *count)
 {
-	if (lst_size == 2)
-		swap(a, 'a', count);
-	else if (lst_size == 3)
-		size_3(a, lst_size, count);
-	else if (lst_size == 4)
-		size_4(a, b, lst_size, count);
+	push_lesser_in_b(a, b, lst_size, count);
+	push_lesser_in_b(a, b, lst_size, count);
+	size_3(a, count);
+	push(a, b, 'a', count);
+	push(a, b, 'a', count);
+}
+
+int	parsing_size(t_list **a, t_list **b, int lst_size, t_count *count)
+{
+	if (lst_size < 6 && lst_size > 1)
+	{
+		if (lst_size == 2)
+			swap(a, 'a', count);
+		else if (lst_size == 3)
+			size_3(a, count);
+		else if (lst_size == 4)
+			size_4(a, b, lst_size, count);
+		else if (lst_size == 5)
+			size_5(a, b, lst_size, count);
+		return (1);
+	}
+	return (0);
 }

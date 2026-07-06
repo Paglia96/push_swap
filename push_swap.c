@@ -45,9 +45,11 @@ static void	first_line(t_count *moves)
 
 static void	second_line(t_count *moves)
 {
-	(void)moves;
+	int	len;
+
+	len = ft_strlen(moves->strategy);
 	write (2, "[bench] strategy:  ", 19);
-	write (2, moves->strategy, ft_strlen(moves->strategy));
+	write (2, moves->strategy, len);
 	free(moves->strategy);
 	write (2, "\n", 1);
 }
@@ -97,6 +99,25 @@ static void	print_stats_on_stderr(t_count *moves)
 	last_line(moves);
 }
 
+void	dispatcher(t_list **lst_a, t_list **lst_b, t_count *count, t_flags *flag)
+{
+	if (parsing_size(lst_a, lst_b, ft_lstsize(*lst_a), count))
+		count->strategy = ft_strdup("Adaptive");
+	if (!is_ordered(*lst_a))
+	{
+		if (flag->simple == 1 && !flag->complex_s && !flag->medium && !flag->adaptive)
+			simple_min_max_extraction_method(lst_a, lst_b, count);
+		else if (flag->medium == 1 && !flag->complex_s && !flag->simple && !flag->adaptive)
+			chunk_sort(lst_a, lst_b, count);
+		else if (flag->complex_s == 1 && !flag->medium && !flag->simple && !flag->adaptive)
+			radix_sort(lst_a, lst_b, count);
+		else if ((flag->adaptive == 1 || flag->adaptive == 0) && !flag->medium && !flag->complex_s && !flag->simple)
+			choose_algorithm(lst_a, lst_b, count);
+		else
+			error_call(*lst_a);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*lst_a;
@@ -118,18 +139,10 @@ int	main(int argc, char **argv)
 	}
 	index_list(lst_a);
 	disorder(lst_a, &count);
-	if (flag.simple == 1 && !flag.complex_s && !flag.medium && !flag.adaptive)
-		simple_min_max_extraction_method(&lst_a, &lst_b, &count);
-	else if (flag.medium == 1 && !flag.complex_s && !flag.simple && !flag.adaptive)
-		chunk_sort(&lst_a, &lst_b, &count);
-	else if (flag.complex_s == 1 && !flag.medium && !flag.simple && !flag.adaptive)
-		radix_sort(&lst_a, &lst_b, &count);
-	else if ((flag.adaptive == 1 || flag.adaptive == 0) && !flag.medium && !flag.complex_s && !flag.simple)
-		choose_algorithm(&lst_a, &lst_b, &count);
-	else
-		error_call(lst_a);
+	dispatcher(&lst_a, &lst_b, &count, &flag);
 	if (flag.bench == 1)
 		print_stats_on_stderr(&count);
 	if (flag.bench == 0)
 		free(count.strategy);
+	free_lst(lst_a);
 }
