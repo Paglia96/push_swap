@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 17:22:10 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 18:05:40 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/07 11:00:41 by gipaglie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ void	ft_putnbr(int n)
 	if (n > 9)
 		ft_putnbr(n / 10);
 	write(1, &"0123456789"[n % 10], 1);
+}
+
+int	round_sqrt(int nb)
+{
+	int	i;
+
+	i = 0;
+	while ((i * i) < nb + 1)
+	{
+		if ((i * i) == nb)
+			return (i);
+		i++;
+	}
+	i--;
+	return (i);
 }

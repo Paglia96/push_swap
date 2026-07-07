@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/04 18:19:48 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 18:05:57 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/07 10:58:52 by gipaglie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,22 @@ static void	size_3(t_list **a, t_count *count)
 	}
 }
 
-static void	push_lesser_in_b(t_list **a, t_list **b, int lst_size, t_count *count)
+static void	push_lesser_in_b(
+		t_list **a,
+		t_list **b,
+		int lst_size,
+		t_count *count)
 {
-	int	nb;//numero piu' piccolo
-	int	distance;//distanza dal nodo 0 al numero piu' piccolo
+	int	nb;
+	int	distance;
 
 	nb = lesser_number(*a);
 	distance = target_distance(nb, *a);
-	while ((*a)->nb != nb)//stiamo cercando il numero piu' piccolo
+	while ((*a)->nb != nb)
 	{
-		if (lst_size / 2 <= distance)//se e' nella seconda meta' della mediana
+		if (lst_size / 2 <= distance)
 			reverse_rotate(a, 'a', count);
-		else//se e' nella prima meta' della mediana
+		else
 			rotate(a, 'a', count);
 	}
 	push(b, a, 'b', count);
@@ -65,7 +69,7 @@ int	parsing_size(t_list **a, t_list **b, int lst_size, t_count *count)
 {
 	if (lst_size < 6 && lst_size > 1)
 	{
-		if (lst_size == 2)
+		if (lst_size == 2 && (*a)->nb > (*a)->next->nb)
 			swap(a, 'a', count);
 		else if (lst_size == 3)
 			size_3(a, count);

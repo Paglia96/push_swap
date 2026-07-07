@@ -12,22 +12,13 @@
 
 #include "push_swap.h"
 
-int	bit_len(int nb)
+static void	push_back_in_a_radix(t_list **a, t_list **b, t_count *count)
 {
-	int	bit_len;
-	int	nb_moved;
-
-	bit_len = 0;
-	nb_moved = nb;
-	while (nb_moved > 0)
-	{
-		bit_len++;
-		nb_moved = nb_moved >> 1;
-	}
-	return (bit_len);
+	while (*b)
+		push(a, b, 'a', count);
 }
 
-void	push_in_b_radix(t_list **a, t_list **b, t_count *count, int i)
+static void	push_in_b_radix(t_list **a, t_list **b, t_count *count, int i)
 {
 	int	size;
 	int	j;
@@ -44,10 +35,19 @@ void	push_in_b_radix(t_list **a, t_list **b, t_count *count, int i)
 	}
 }
 
-void	push_back_in_a_radix(t_list **a, t_list **b, t_count *count)
+static int	bit_len(int nb)
 {
-	while (*b)
-		push(a, b, 'a', count);
+	int	bit_len;
+	int	nb_moved;
+
+	bit_len = 0;
+	nb_moved = nb;
+	while (nb_moved > 0)
+	{
+		bit_len++;
+		nb_moved = nb_moved >> 1;
+	}
+	return (bit_len);
 }
 
 void	radix_sort(t_list **a, t_list **b, t_count *count)

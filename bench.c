@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+static void	ft_putnbr_moves(int n)
+{
+	if (n < 10)
+	{
+		write (2, &"0123456789"[n % 10], 1);
+		return ;
+	}
+	ft_putnbr_moves(n / 10);
+	write (2, &"0123456789"[n % 10], 1);
+	return ;
+}
+
 static void	first_line(t_count *moves)
 {
 	float	var_1;
@@ -33,7 +45,7 @@ static void	first_line(t_count *moves)
 	write (2, "%\n", 2);
 }
 
-static void	second_line(t_count *moves)
+static void	second_third_and_fourth_lines(t_count *moves)
 {
 	int	len;
 
@@ -42,10 +54,6 @@ static void	second_line(t_count *moves)
 	write (2, moves->strategy, len);
 	free(moves->strategy);
 	write (2, "\n", 1);
-}
-
-static void	third_and_fourth_lines(t_count *moves)
-{
 	write (2, "[bench] total_ops:  ", 20);
 	ft_putnbr_moves(moves->total);
 	write (2, "\n", 1);
@@ -84,7 +92,6 @@ static void	last_line(t_count *moves)
 void	print_stats_on_stderr(t_count *moves)
 {
 	first_line(moves);
-	second_line(moves);
-	third_and_fourth_lines(moves);
+	second_third_and_fourth_lines(moves);
 	last_line(moves);
 }

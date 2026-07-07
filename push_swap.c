@@ -6,7 +6,7 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 17:31:33 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/06 17:46:14 by caguiari         ###   ########.fr       */
+/*   Updated: 2026/07/07 10:57:11 by gipaglie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,27 @@ void	error_call(t_list *lst)
 	exit(1);
 }
 
-void	ft_putnbr_moves(int n)
+static void	choose_algorithm(t_list **a, t_list **b, t_count *count)
 {
-	if (n < 10)
+	count->adaptive_called = TRUE;
+	if (count->disorder < 0.2)
 	{
-		write (2, &"0123456789"[n % 10], 1);
-		return ;
+		simple_min_max_extraction_method(a, b, count);
+		count->strategy = ft_strdup("Adaptive / O(n²)");
 	}
-	ft_putnbr_moves(n / 10);
-	write (2, &"0123456789"[n % 10], 1);
-	return ;
+	else if (count->disorder >= 0.2 && count->disorder < 0.5)
+	{
+		chunk_sort(a, b, count);
+		count->strategy = ft_strdup("Adaptive / O(n√n)");
+	}
+	else
+	{
+		radix_sort(a, b, count);
+		count->strategy = ft_strdup("Adaptive / O(n log n)");
+	}
 }
 
-void	dispatcher(
+static void	dispatcher(
 	t_list **lst_a,
 	t_list **lst_b,
 	t_count *count,
@@ -44,17 +52,44 @@ void	dispatcher(
 		count->strategy = ft_strdup("Adaptive");
 	if (!is_ordered(*lst_a))
 	{
-		if (flag->simple == 1 && !flag->complex_s && !flag->medium && !flag->adaptive)
+		if (flag->simple == 1 && !flag->complex_s
+			&& !flag->medium && !flag->adaptive)
 			simple_min_max_extraction_method(lst_a, lst_b, count);
-		else if (flag->medium == 1 && !flag->complex_s && !flag->simple && !flag->adaptive)
+		else if (flag->medium == 1 && !flag->complex_s
+			&& !flag->simple && !flag->adaptive)
 			chunk_sort(lst_a, lst_b, count);
-		else if (flag->complex_s == 1 && !flag->medium && !flag->simple && !flag->adaptive)
+		else if (flag->complex_s == 1 && !flag->medium
+			&& !flag->simple && !flag->adaptive)
 			radix_sort(lst_a, lst_b, count);
-		else if ((flag->adaptive == 1 || flag->adaptive == 0) && !flag->medium && !flag->complex_s && !flag->simple)
+		else if ((flag->adaptive == 1 || flag->adaptive == 0) && !flag->medium
+			&& !flag->complex_s && !flag->simple)
 			choose_algorithm(lst_a, lst_b, count);
 		else
 			error_call(*lst_a);
 	}
+}
+
+static void	disorder(t_list *lst, t_count *count)
+{
+	t_list	*j;
+	int		mistakes;
+	int		total_pairs;
+
+	mistakes = 0;
+	total_pairs = 0;
+	while (lst)
+	{
+		j = lst->next;
+		while (j)
+		{
+			total_pairs++;
+			if (lst->nb > j->nb)
+				mistakes++;
+			j = j->next;
+		}
+		lst = lst->next;
+	}
+	count->disorder = (float) mistakes / (float) total_pairs;
 }
 
 int	main(int argc, char **argv)
