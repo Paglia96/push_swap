@@ -6,21 +6,11 @@
 /*   By: caguiari <caguiari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 17:31:33 by caguiari          #+#    #+#             */
-/*   Updated: 2026/07/07 10:57:11 by gipaglie         ###   ########.fr       */
+/*   Updated: 2026/07/07 14:52:14 by gipaglie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	error_call(t_list *lst)
-{
-	t_list	*ptr;
-
-	(void)ptr;
-	write(2, "Error\n", 6);
-	free_lst(lst);
-	exit(1);
-}
 
 static void	choose_algorithm(t_list **a, t_list **b, t_count *count)
 {
@@ -92,6 +82,14 @@ static void	disorder(t_list *lst, t_count *count)
 	count->disorder = (float) mistakes / (float) total_pairs;
 }
 
+static void	has_bench_been_called(t_flags *flag, t_count *count)
+{
+	if (flag->bench == 1)
+		print_stats_on_stderr(count);
+	if (flag->bench == 0)
+		free(count->strategy);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*lst_a;
@@ -113,10 +111,10 @@ int	main(int argc, char **argv)
 	}
 	index_list(lst_a);
 	disorder(lst_a, &count);
-	dispatcher(&lst_a, &lst_b, &count, &flag);
-	if (flag.bench == 1)
-		print_stats_on_stderr(&count);
-	if (flag.bench == 0)
-		free(count.strategy);
+	if (!is_ordered(lst_a))
+		dispatcher(&lst_a, &lst_b, &count, &flag);
+	else
+		count.strategy = ft_strdup("");
+	has_bench_been_called(&flag, &count);
 	free_lst(lst_a);
 }
