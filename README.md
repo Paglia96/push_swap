@@ -19,7 +19,7 @@ The program:
 - Usage:
   - Include the library headers in your program and call 
     ```Bash
-    ./push_swap $(shuf -i 0-500 -n 100)
+    ./push_swap $(shuf -i 0-500 -n 100 | tr "\n" " ")
 
     ```
 - The program supports custom flags:
