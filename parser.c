@@ -14,9 +14,6 @@
 
 void	error_call(t_list *lst)
 {
-	t_list	*ptr;
-
-	(void)ptr;
 	write(2, "Error\n", 6);
 	free_lst(lst);
 	exit(1);
