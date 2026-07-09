@@ -61,7 +61,10 @@ The program:
   - Insertion-style sorting strategies
   - Stack manipulation and algorithm optimization tutorials
 
-# AI usage
+# Contributions
+- As both learners were everyday in the cluster, they decided to use the software development technique called "pair programming" in which two programmers work together at one workstation. One, the driver, writes code while the other, the observer or navigator, reviews each line of code as it is typed in. While reviewing, the observer also considers the "strategic" direction of the work, coming up with ideas for improvements and likely future problems to address. This is intended to free the driver to focus all of their attention on the "tactical" aspects of completing the current task, using the observer as a safety net and guide. 
+
+## AI usage
 
 - AI was used to:
   - help structure this README,
